@@ -33,4 +33,5 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
 
     compile 'eu.marcocattaneo.androidinstagramconnector:android-instagram-connector:1.1'
+    compile project(path: ':domain')
 }
