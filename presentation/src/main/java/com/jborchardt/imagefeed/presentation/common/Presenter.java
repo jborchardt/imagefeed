@@ -1,4 +1,4 @@
-package com.jborchardt.instafeed.presentation.common;
+package com.jborchardt.imagefeed.presentation.common;
 
 public interface Presenter {
     void register();

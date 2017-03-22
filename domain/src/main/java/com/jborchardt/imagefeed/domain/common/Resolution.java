@@ -1,4 +1,4 @@
-package com.jborchardt.domain.common;
+package com.jborchardt.imagefeed.domain.common;
 
 /**
  * Created by johannesborchardt on 21.03.17.

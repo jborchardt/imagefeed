@@ -1,4 +1,4 @@
-package com.jborchardt.instafeed.presentation;
+package com.jborchardt.imagefeed.presentation;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

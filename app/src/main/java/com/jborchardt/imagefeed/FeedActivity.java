@@ -1,13 +1,13 @@
-package com.jborchardt.instafeed;
+package com.jborchardt.imagefeed;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class FeedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_feed);
     }
 }

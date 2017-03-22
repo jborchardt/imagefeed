@@ -1,4 +1,4 @@
-package com.jborchardt.instafeed.data;
+package com.jborchardt.imagefeed;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.jborchardt.instafeed.data.test", appContext.getPackageName());
+        assertEquals("com.jborchardt.instafeed", appContext.getPackageName());
     }
 }

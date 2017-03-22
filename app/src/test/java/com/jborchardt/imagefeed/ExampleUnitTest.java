@@ -1,4 +1,4 @@
-package com.jborchardt.instafeed.data;
+package com.jborchardt.imagefeed;
 
 import org.junit.Test;
 

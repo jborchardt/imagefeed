@@ -31,7 +31,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
 
-    compile 'eu.marcocattaneo.androidinstagramconnector:android-instagram-connector:1.1'
     compile project(path: ':domain')
 }
