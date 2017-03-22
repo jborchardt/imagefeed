@@ -27,7 +27,6 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
     private final Navigator mNavigator;
     private final FeedView mView;
     private final List<FeedItemModel> mFeedItems;
-    private boolean mLoading;
 
     public FeedPresenter(@NonNull final FeedInteractor interactor, @NonNull final Navigator navigator, @NonNull final FeedView view) {
         mInteractor = interactor;
@@ -38,23 +37,14 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
 
     @Override
     public void register() {
-        fetchFirstPage();
+        fetchNextPage();
     }
 
     public void retry() {
-        fetchFirstPage();
-    }
-
-    private void fetchFirstPage() {
-        showLoading();
-        mInteractor.fetchFirstFeedPage(new FeedObserver());
+        fetchNextPage();
     }
 
     public void fetchNextPage() {
-        if(mLoading) {
-            return;
-        }
-
         showLoading();
         mInteractor.fetchNextPage(new FeedObserver());
     }
@@ -66,11 +56,9 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
 
     private void showLoading() {
         mView.showLoading();
-        mLoading = true;
     }
 
     private void hideLoading() {
-        mLoading = false;
         mView.hideLoading();
     }
 

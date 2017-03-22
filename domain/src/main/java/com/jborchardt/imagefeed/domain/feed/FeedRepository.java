@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface FeedRepository {
     List<? extends FeedItemModel> fetchFeed(int page) throws IOException;
+
+    boolean isFetching();
 }

@@ -23,6 +23,7 @@ public class FeedWebRepository extends BaseWebRepository implements FeedReposito
     private static final int DEFAULT_PAGE_SIZE = 100;
 
     private final ImgurService mImgurService;
+    private boolean mIsFetching;
 
     public FeedWebRepository(final String baseUrl, final String clientId) {
         super(baseUrl, clientId);
@@ -34,11 +35,26 @@ public class FeedWebRepository extends BaseWebRepository implements FeedReposito
         return getRetrofit().create(ImgurService.class);
     }
 
+
+    public boolean isFetching() {
+        return mIsFetching;
+    }
+
+    private void setIsFetching(final boolean fetching) {
+        mIsFetching = fetching;
+    }
+
     @Override
     public List<ImgurImage> fetchFeed(@NonNull final int page) throws IOException {
-        final Call<ImgurFeedResponse> feedItemsCall = mImgurService.fetchListItems(page, DEFAULT_PAGE_SIZE);
-        final retrofit2.Response<ImgurFeedResponse> response = feedItemsCall.execute();
-        return response.body().getData();
+        setIsFetching(true);
+
+        try {
+            final Call<ImgurFeedResponse> feedItemsCall = mImgurService.fetchListItems(page, DEFAULT_PAGE_SIZE);
+            final retrofit2.Response<ImgurFeedResponse> response = feedItemsCall.execute();
+            return response.body().getData();
+        } finally {
+            setIsFetching(false);
+        }
     }
 
     private interface ImgurService {

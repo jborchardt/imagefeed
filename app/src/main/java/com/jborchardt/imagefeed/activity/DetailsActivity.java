@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 
+import com.jborchardt.imagefeed.R;
 import com.jborchardt.imagefeed.presentation.view.details.DetailsFragment;
 
 public class DetailsActivity extends BaseActivity {
@@ -15,7 +17,9 @@ public class DetailsActivity extends BaseActivity {
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(R.string.details);
     }
 
     @Override
