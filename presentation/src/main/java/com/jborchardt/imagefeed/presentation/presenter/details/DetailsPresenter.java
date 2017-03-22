@@ -68,6 +68,7 @@ public class DetailsPresenter implements Presenter {
 
         @Override
         public void onError(final Throwable e) {
+            hideLoading();
             showError(shouldRetry(e));
         }
     }

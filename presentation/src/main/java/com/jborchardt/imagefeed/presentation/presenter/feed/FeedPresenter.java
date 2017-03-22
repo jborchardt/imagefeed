@@ -122,6 +122,7 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
 
         @Override
         public void onError(final Throwable e) {
+            hideLoading();
             showError(shouldRetry(e));
         }
     }
