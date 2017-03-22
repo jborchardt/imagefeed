@@ -24,7 +24,7 @@ public class ImgurImage implements FeedItemModel, DetailsModel {
     @SerializedName("downs")
     private int mDownvotes;
 
-    @SerializedName("comments")
+    @SerializedName("comment_count")
     private int mComments;
 
     @SerializedName("views")

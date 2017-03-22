@@ -1,6 +1,8 @@
-package com.jborchardt.imagefeed.common;
+package com.jborchardt.imagefeed.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -9,11 +11,15 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.jborchardt.imagefeed.R;
+import com.jborchardt.imagefeed.presentation.navigation.Navigator;
 import com.jborchardt.imagefeed.presentation.view.loading.LoadingBarView;
 import com.jborchardt.imagefeed.presentation.view.loading.LoadingToolbar;
 import com.jborchardt.imagefeed.presentation.view.loading.LoadingViewProvider;
 
-public abstract class BaseActivity extends AppCompatActivity implements LoadingViewProvider {
+import io.reactivex.functions.Consumer;
+import io.reactivex.plugins.RxJavaPlugins;
+
+public abstract class BaseActivity extends AppCompatActivity implements LoadingViewProvider, Navigator {
 
     private View mContentView;
     private LoadingToolbar mToolbar;
@@ -50,6 +56,13 @@ public abstract class BaseActivity extends AppCompatActivity implements LoadingV
         return mToolbar.getLoadingView();
     }
 
+    @Override
+    public void navigateToDetails(@NonNull final String itemId) {
+        final Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra(DetailsActivity.ARG_ID, itemId);
+
+        startActivity(intent);
+    }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {

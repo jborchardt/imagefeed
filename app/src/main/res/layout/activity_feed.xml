@@ -6,6 +6,6 @@
     android:id="@+id/feed"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jborchardt.imagefeed.FeedActivity"
+    tools:context="com.jborchardt.imagefeed.activity.FeedActivity"
     />
 

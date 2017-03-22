@@ -1,11 +1,10 @@
 package com.jborchardt.imagefeed.domain.details;
 
-import android.support.annotation.NonNull;
-
 import com.jborchardt.imagefeed.domain.common.Interactor;
 
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 
 public class DetailsInteractor extends Interactor {

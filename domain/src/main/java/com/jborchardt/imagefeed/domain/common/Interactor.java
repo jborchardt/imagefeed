@@ -1,9 +1,8 @@
 package com.jborchardt.imagefeed.domain.common;
 
-import android.support.annotation.NonNull;
-
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 

@@ -6,7 +6,10 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jborchardt.imagefeed.data.RepositoryRegistry;
 import com.jborchardt.imagefeed.domain.details.DetailsInteractor;
 import com.jborchardt.imagefeed.domain.details.DetailsModel;
@@ -25,6 +28,12 @@ public class DetailsFragment extends BaseFragment implements DetailsView {
 
     private DetailsPresenter mDetailsPresenter;
     private String mId;
+    private ImageView mImageView;
+    private TextView mTitle;
+    private TextView mUpvotes;
+    private TextView mDownvotes;
+    private TextView mComments;
+    private TextView mViews;
 
     @Deprecated
     public DetailsFragment() {
@@ -53,7 +62,7 @@ public class DetailsFragment extends BaseFragment implements DetailsView {
     @Nullable
     @Override
     public android.view.View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, final Bundle savedInstanceState) {
-        final View view =  inflater.inflate(R.layout.fragment_feed, container, false);
+        final View view = inflater.inflate(R.layout.fragment_details, container, false);
 
         setUpPresenter();
         setUpViews(view);
@@ -68,7 +77,12 @@ public class DetailsFragment extends BaseFragment implements DetailsView {
     }
 
     private void setUpViews(final View view) {
-
+        mImageView = (ImageView) view.findViewById(R.id.image);
+        mTitle = (TextView) view.findViewById(R.id.title);
+        mUpvotes = (TextView) view.findViewById(R.id.upvotes);
+        mDownvotes = (TextView) view.findViewById(R.id.downvotes);
+        mComments = (TextView) view.findViewById(R.id.comments);
+        mViews = (TextView) view.findViewById(R.id.views);
     }
 
     @Override
@@ -86,12 +100,21 @@ public class DetailsFragment extends BaseFragment implements DetailsView {
     }
 
     @Override
-    protected void retryClicked() {
+    protected void onRetry() {
         mDetailsPresenter.retry();
     }
 
     @Override
     public void renderDetails(final DetailsModel details) {
+        Glide
+                .with(getActivity())
+                .load(details.getImageUrl())
+                .into(mImageView);
 
+        mTitle.setText(details.getTitle());
+        mUpvotes.setText(Integer.toString(details.getUpvotes()));
+        mDownvotes.setText(Integer.toString(details.getDownvotes()));
+        mComments.setText(Integer.toString(details.getComments()));
+        mViews.setText(Integer.toString(details.getViews()));
     }
 }

@@ -1,6 +1,5 @@
 package com.jborchardt.imagefeed.domain.feed;
 
-import android.support.annotation.NonNull;
 
 import com.jborchardt.imagefeed.domain.common.Interactor;
 
@@ -9,6 +8,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 
 /**
@@ -24,7 +24,7 @@ public class FeedInteractor extends Interactor<FeedItemModel> {
     private int mPage;
     private List<FeedItemModel> mFeedItems;
 
-    public FeedInteractor( @NonNull final Scheduler executionScheduler, @NonNull final Scheduler postExecutionScheduler, @NonNull final FeedRepository feedRepository) {
+    public FeedInteractor(@NonNull final Scheduler executionScheduler, @NonNull final Scheduler postExecutionScheduler, @NonNull final FeedRepository feedRepository) {
         super(executionScheduler, postExecutionScheduler);
 
         mFeedRepository = feedRepository;

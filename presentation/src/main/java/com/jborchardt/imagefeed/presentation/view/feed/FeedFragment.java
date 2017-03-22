@@ -47,7 +47,7 @@ public class FeedFragment extends BaseFragment implements FeedView {
     private void setUpPresenter() {
         final FeedRepository feedRepository = RepositoryRegistry.getInstance(getActivity()).getFeedRepository();
         final FeedInteractor feedInteractor = new FeedInteractor(Schedulers.io(), AndroidSchedulers.mainThread(), feedRepository);
-        mFeedPresenter = new FeedPresenter(feedInteractor, this);
+        mFeedPresenter = new FeedPresenter(feedInteractor, getNavigator(), this);
     }
 
     private void setUpViews() {
@@ -69,7 +69,7 @@ public class FeedFragment extends BaseFragment implements FeedView {
     }
 
     @Override
-    protected void retryClicked() {
+    protected void onRetry() {
         mFeedPresenter.retry();
     }
 }

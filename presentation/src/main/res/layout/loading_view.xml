@@ -5,18 +5,17 @@
         android:id="@+id/solid_bar"
         android:layout_width="match_parent"
         android:layout_height="4dp"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorAccent"
+        />
 
     <ProgressBar
         android:id="@+id/progress_bar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="22dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/loading_view_margin_bottom"
         android:indeterminate="true"
         android:indeterminateTint="@color/colorAccent"
         android:indeterminateTintMode="src_in"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 </merge>
 

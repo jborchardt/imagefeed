@@ -12,6 +12,7 @@ import com.jborchardt.imagefeed.domain.feed.FeedItemModel;
 import com.jborchardt.imagefeed.presentation.R;
 import com.jborchardt.imagefeed.presentation.common.BaseObserver;
 import com.jborchardt.imagefeed.presentation.common.Presenter;
+import com.jborchardt.imagefeed.presentation.navigation.Navigator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +23,14 @@ import java.util.List;
 
 public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHolder> implements Presenter {
 
-    private final FeedView mView;
     private final FeedInteractor mInteractor;
+    private final Navigator mNavigator;
+    private final FeedView mView;
     private final List<FeedItemModel> mFeedItems;
 
-    public FeedPresenter(@NonNull final FeedInteractor interactor, @NonNull FeedView view) {
+    public FeedPresenter(@NonNull final FeedInteractor interactor, @NonNull final Navigator navigator, @NonNull final FeedView view) {
         mInteractor = interactor;
+        mNavigator = navigator;
         mView = view;
         mFeedItems = new ArrayList<>();
     }
@@ -83,6 +86,7 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
     public class FeedViewHolder extends RecyclerView.ViewHolder {
 
         private final ImageView mImageView;
+        private FeedItemModel mItem;
 
         public FeedViewHolder(final ImageView itemView) {
             super(itemView);
@@ -91,10 +95,15 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
         }
 
         public void bind(final FeedItemModel item) {
+            mItem = item;
             Glide
                     .with(mImageView.getContext())
                     .load(item.getImageUrl())
                     .into(mImageView);
+
+            mImageView.setOnClickListener(view -> {
+                mNavigator.navigateToDetails(mItem.getId());
+            });
         }
     }
 
