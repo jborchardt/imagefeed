@@ -36,7 +36,6 @@ public class FeedRecyclerView extends RecyclerView {
         mItemDecoration = new FeedItemDecoration((int) mItemMargin, (int) mItemMargin, true, true, 1);
 
         addItemDecoration(mItemDecoration);
-
     }
 
 
