@@ -24,13 +24,11 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
 
     private final FeedView mView;
     private final FeedInteractor mInteractor;
-    private final FeedObserver mObserver;
     private final List<FeedItemModel> mFeedItems;
 
     public FeedPresenter(@NonNull final FeedInteractor interactor, @NonNull FeedView view) {
         mInteractor = interactor;
         mView = view;
-        mObserver = new FeedObserver();
         mFeedItems = new ArrayList<>();
     }
 
@@ -45,7 +43,7 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
     }
 
     private void fetchFirstPage() {
-        mInteractor.fetchFirstFeedPage(mObserver);
+        mInteractor.fetchFirstFeedPage(new FeedObserver());
     }
 
     @Override

@@ -32,15 +32,15 @@ public class FeedInteractor extends Interactor<FeedItemModel> {
     }
 
     public void fetchFirstFeedPage(@NonNull final DisposableObserver<FeedItemModel> observer) {
-        fetchFeed(0, observer);
+        fetchFeed(observer, 0);
     }
 
     public void fetchNextPage(@NonNull final DisposableObserver<FeedItemModel> observer) {
         mPage++;
-        fetchFeed(mPage, observer);
+        fetchFeed(observer, mPage);
     }
 
-    private void fetchFeed(final int page, @NonNull final DisposableObserver<FeedItemModel> observer) {
+    private void fetchFeed(@NonNull final DisposableObserver<FeedItemModel> observer, final int page) {
         final Observable<FeedItemModel> feedObservable = Observable.create(emitter -> {
             try {
                 final List<? extends FeedItemModel> feedItems = mFeedRepository.fetchFeed(page);

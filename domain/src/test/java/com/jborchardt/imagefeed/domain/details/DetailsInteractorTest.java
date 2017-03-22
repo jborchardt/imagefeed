@@ -30,7 +30,7 @@ public class DetailsInteractorTest {
             }
         };
 
-        getDetailsInteractor(false).fetchDetails("id", observer);
+        getDetailsInteractor(false).fetchDetails(observer, "id");
     }
 
     @Test
@@ -54,7 +54,7 @@ public class DetailsInteractorTest {
             }
         };
 
-        getDetailsInteractor(true).fetchDetails("id", observer);
+        getDetailsInteractor(true).fetchDetails(observer, "id");
     }
 
     private DetailsInteractor getDetailsInteractor(final boolean shouldThrowError) {

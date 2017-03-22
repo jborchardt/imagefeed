@@ -17,7 +17,7 @@ public class DetailsInteractor extends Interactor {
         mDetailsRepository = detailsRepository;
     }
 
-    public void fetchDetails(@NonNull final String id, @NonNull final DisposableObserver<DetailsModel> observer) {
+    public void fetchDetails(@NonNull final DisposableObserver<DetailsModel> observer, @NonNull final String id) {
         final Observable<DetailsModel> detailsObservable = Observable.create(emitter -> {
             try {
                 final DetailsModel details = mDetailsRepository.fetchDetails(id);

@@ -3,4 +3,7 @@
     <string name="error_default">There was a problem</string>
     <string name="retry">Retry</string>
     <string name="error_retry">Problem with the data connection</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

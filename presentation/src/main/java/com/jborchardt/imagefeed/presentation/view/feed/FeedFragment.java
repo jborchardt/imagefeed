@@ -12,14 +12,9 @@ import com.jborchardt.imagefeed.presentation.R;
 import com.jborchardt.imagefeed.presentation.common.BaseFragment;
 import com.jborchardt.imagefeed.presentation.presenter.feed.FeedPresenter;
 import com.jborchardt.imagefeed.presentation.presenter.feed.FeedView;
-import com.jborchardt.imagefeed.presentation.view.error.ErrorSnackbarView;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-
-/**
- * Created by johannesborchardt on 22.03.17.
- */
 
 public class FeedFragment extends BaseFragment implements FeedView {
 
@@ -43,16 +38,20 @@ public class FeedFragment extends BaseFragment implements FeedView {
     public android.view.View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, final Bundle savedInstanceState) {
         mFeedRecyclerView = (FeedRecyclerView) inflater.inflate(R.layout.fragment_feed, container, false);
 
-        setUp(mFeedRecyclerView);
+        setUpPresenter();
+        setUpViews();
 
         return mFeedRecyclerView;
     }
 
-    private void setUp(final FeedRecyclerView feedRecyclerView) {
+    private void setUpPresenter() {
         final FeedRepository feedRepository = RepositoryRegistry.getInstance(getActivity()).getFeedRepository();
         final FeedInteractor feedInteractor = new FeedInteractor(Schedulers.io(), AndroidSchedulers.mainThread(), feedRepository);
         mFeedPresenter = new FeedPresenter(feedInteractor, this);
-        feedRecyclerView.setAdapter(mFeedPresenter);
+    }
+
+    private void setUpViews() {
+        mFeedRecyclerView.setAdapter(mFeedPresenter);
     }
 
     @Override
@@ -69,13 +68,8 @@ public class FeedFragment extends BaseFragment implements FeedView {
         super.onStop();
     }
 
-    private void retryClicked() {
+    @Override
+    protected void retryClicked() {
         mFeedPresenter.retry();
-    }
-
-    public void showError(final boolean showRetry) {
-        final ErrorSnackbarView errorView = new ErrorSnackbarView(mFeedRecyclerView);
-        errorView.setOnClickListener(view -> retryClicked());
-        errorView.showError(showRetry);
     }
 }

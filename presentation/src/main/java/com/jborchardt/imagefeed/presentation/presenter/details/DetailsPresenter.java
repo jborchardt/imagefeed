@@ -1,0 +1,74 @@
+package com.jborchardt.imagefeed.presentation.presenter.details;
+
+import android.support.annotation.NonNull;
+
+import com.jborchardt.imagefeed.domain.details.DetailsInteractor;
+import com.jborchardt.imagefeed.domain.details.DetailsModel;
+import com.jborchardt.imagefeed.presentation.common.BaseObserver;
+import com.jborchardt.imagefeed.presentation.common.Presenter;
+
+public class DetailsPresenter implements Presenter {
+
+    private final DetailsInteractor mInteractor;
+    private final DetailsView mView;
+    private final String mImageId;
+
+    public DetailsPresenter(@NonNull final DetailsInteractor interactor, @NonNull DetailsView view, @NonNull String imageId) {
+        mInteractor = interactor;
+        mView = view;
+        mImageId = imageId;
+    }
+
+    @Override
+    public void register() {
+        showLoading();
+        fetchDetails();
+    }
+
+    @Override
+    public void unregister() {
+        mInteractor.dispose();
+    }
+
+    public void retry() {
+        fetchDetails();
+    }
+
+    private void fetchDetails() {
+        mInteractor.fetchDetails(new DetailsObserver(), mImageId);
+    }
+
+    private void showDetails(final DetailsModel details) {
+        mView.renderDetails(details);
+    }
+
+    private void showLoading() {
+        mView.showLoading();
+    }
+
+    private void hideLoading() {
+        mView.hideLoading();
+    }
+
+    private void showError(final boolean showRetry) {
+        mView.showError(showRetry);
+    }
+
+    private class DetailsObserver extends BaseObserver<DetailsModel> {
+
+        @Override
+        public void onNext(final DetailsModel details) {
+            showDetails(details);
+        }
+
+        @Override
+        public void onComplete() {
+            hideLoading();
+        }
+
+        @Override
+        public void onError(final Throwable e) {
+            showError(shouldRetry(e));
+        }
+    }
+}
