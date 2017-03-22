@@ -10,7 +10,7 @@ import static junit.framework.Assert.*;
 public class FeedInteractorTest {
 
     @Test
-    public void feed_results_arrive() throws Exception {
+    public void testGetFeedItems() throws Exception {
         final FeedRepository repository = new MockFeedRepository();
 
         final FeedInteractor feedInteractor = new FeedInteractor(Schedulers.io(), Schedulers.io(), repository);
@@ -20,6 +20,7 @@ public class FeedInteractorTest {
 
             @Override
             public void onNext(final FeedItemModel value) {
+                assertNotNull(value);
                 mItemCount++;
             }
 

@@ -24,7 +24,7 @@ public class FeedInteractor extends Interactor<FeedItemModel> {
     private int mPage;
     private List<FeedItemModel> mFeedItems;
 
-    public FeedInteractor(final Scheduler executionScheduler, final Scheduler postExecutionScheduler, final FeedRepository feedRepository) {
+    public FeedInteractor( @NonNull final Scheduler executionScheduler, @NonNull final Scheduler postExecutionScheduler, @NonNull final FeedRepository feedRepository) {
         super(executionScheduler, postExecutionScheduler);
 
         mFeedRepository = feedRepository;
@@ -32,15 +32,15 @@ public class FeedInteractor extends Interactor<FeedItemModel> {
     }
 
     public void fetchFirstFeedPage(@NonNull final DisposableObserver<FeedItemModel> observer) {
-        fetchFeed(observer, 0);
+        fetchFeed(0, observer);
     }
 
     public void fetchNextPage(@NonNull final DisposableObserver<FeedItemModel> observer) {
         mPage++;
-        fetchFeed(observer, mPage);
+        fetchFeed(mPage, observer);
     }
 
-    private void fetchFeed(@NonNull final DisposableObserver<FeedItemModel> observer, final int page) {
+    private void fetchFeed(final int page, @NonNull final DisposableObserver<FeedItemModel> observer) {
         final Observable<FeedItemModel> feedObservable = Observable.create(emitter -> {
             try {
                 final List<? extends FeedItemModel> feedItems = mFeedRepository.fetchFeed(page);
