@@ -26,14 +26,14 @@ public abstract class Interactor<T> {
     }
 
     protected final void execute(@NonNull DisposableObserver<T> observer, @NonNull Observable<T> observable) {
-        observable.subscribeOn(mExecutionScheduler)
-                .observeOn(mPostExecutionScheduler);
-
-        mDisposables.add(observable.subscribeWith(observer));
+        mDisposables.add(
+                observable.subscribeOn(mExecutionScheduler)
+                        .observeOn(mPostExecutionScheduler)
+                        .subscribeWith(observer));
     }
 
     public final void dispose() {
-        if(mDisposables != null) {
+        if (mDisposables != null) {
             mDisposables.dispose();
         }
     }
