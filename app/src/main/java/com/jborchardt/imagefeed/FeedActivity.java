@@ -1,13 +1,14 @@
 package com.jborchardt.imagefeed;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 
-public class FeedActivity extends AppCompatActivity {
+import com.jborchardt.imagefeed.common.BaseActivity;
+import com.jborchardt.imagefeed.presentation.view.feed.FeedFragment;
+
+public class FeedActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feed);
+    protected Fragment getContentFragment() {
+        return FeedFragment.newInstance();
     }
 }

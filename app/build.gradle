@@ -28,6 +28,7 @@ dependencies {
 
     compile project(path: ':presentation')
     compile 'com.android.support:appcompat-v7:25.2.0'
+    compile "com.android.support:design:25.2.0"
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
     compile 'com.google.android:flexbox:0.3.0-alpha2'
     compile 'com.android.support:support-v4:25.2.0'
