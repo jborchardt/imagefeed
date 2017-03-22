@@ -1,6 +1,7 @@
 package com.jborchardt.imagefeed.presentation.view.feed;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,11 +12,15 @@ import com.jborchardt.imagefeed.presentation.R;
 
 public class FeedRecyclerView extends RecyclerView {
 
-    private final float mMinItemWidth;
+    private static final int ITEMS_BEFORE_NEXT_PAGE = 2;
+
     private final GridLayoutManager mGridLayoutManager;
     private final FeedItemDecoration mItemDecoration;
 
+    private final float mMinItemWidth;
     private final float mItemMargin;
+
+    private OnEndReachedListener mOnEndReachedListener;
 
     public FeedRecyclerView(final Context context) {
         this(context, null);
@@ -36,6 +41,8 @@ public class FeedRecyclerView extends RecyclerView {
         mItemDecoration = new FeedItemDecoration((int) mItemMargin, (int) mItemMargin, true, true, 1);
 
         addItemDecoration(mItemDecoration);
+
+        addOnScrollListener(new PageableScrollListener());
     }
 
 
@@ -48,5 +55,25 @@ public class FeedRecyclerView extends RecyclerView {
         mGridLayoutManager.setSpanCount(columnCount);
 
         invalidateItemDecorations();
+    }
+
+    void setOnEndReachedListener(@NonNull final OnEndReachedListener onEndReachedListener) {
+        mOnEndReachedListener = onEndReachedListener;
+    }
+
+    private class PageableScrollListener extends OnScrollListener {
+
+        @Override
+        public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
+            int lastItem = mGridLayoutManager.findLastVisibleItemPosition();
+
+            if (lastItem > getAdapter().getItemCount() - ITEMS_BEFORE_NEXT_PAGE && mOnEndReachedListener != null) {
+                mOnEndReachedListener.onEndReached();
+            }
+        }
+    }
+
+    interface OnEndReachedListener {
+        void onEndReached();
     }
 }

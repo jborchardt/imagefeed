@@ -65,7 +65,9 @@ public abstract class BaseActivity extends AppCompatActivity implements LoadingV
     protected void showFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content, fragment);
-        if (addToBackStack) transaction.addToBackStack(null);
+        if (addToBackStack) {
+            transaction.addToBackStack(null);
+        }
         transaction.commit();
     }
 

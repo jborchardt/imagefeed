@@ -52,6 +52,7 @@ public class FeedFragment extends BaseFragment implements FeedView {
 
     private void setUpViews() {
         mFeedRecyclerView.setAdapter(mFeedPresenter);
+        mFeedRecyclerView.setOnEndReachedListener(new FetchNextPageListener());
     }
 
     @Override
@@ -71,5 +72,13 @@ public class FeedFragment extends BaseFragment implements FeedView {
     @Override
     protected void onRetry() {
         mFeedPresenter.retry();
+    }
+
+    private class FetchNextPageListener implements FeedRecyclerView.OnEndReachedListener {
+
+        @Override
+        public void onEndReached() {
+            mFeedPresenter.fetchNextPage();
+        }
     }
 }

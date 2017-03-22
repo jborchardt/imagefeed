@@ -27,6 +27,7 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
     private final Navigator mNavigator;
     private final FeedView mView;
     private final List<FeedItemModel> mFeedItems;
+    private boolean mLoading;
 
     public FeedPresenter(@NonNull final FeedInteractor interactor, @NonNull final Navigator navigator, @NonNull final FeedView view) {
         mInteractor = interactor;
@@ -37,7 +38,6 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
 
     @Override
     public void register() {
-        showLoading();
         fetchFirstPage();
     }
 
@@ -46,7 +46,17 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
     }
 
     private void fetchFirstPage() {
+        showLoading();
         mInteractor.fetchFirstFeedPage(new FeedObserver());
+    }
+
+    public void fetchNextPage() {
+        if(mLoading) {
+            return;
+        }
+
+        showLoading();
+        mInteractor.fetchNextPage(new FeedObserver());
     }
 
     @Override
@@ -56,9 +66,11 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
 
     private void showLoading() {
         mView.showLoading();
+        mLoading = true;
     }
 
     private void hideLoading() {
+        mLoading = false;
         mView.hideLoading();
     }
 
@@ -99,6 +111,7 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
             Glide
                     .with(mImageView.getContext())
                     .load(item.getImageUrl())
+                    .placeholder(R.drawable.ic_image_placeholder_24dp)
                     .into(mImageView);
 
             mImageView.setOnClickListener(view -> {
