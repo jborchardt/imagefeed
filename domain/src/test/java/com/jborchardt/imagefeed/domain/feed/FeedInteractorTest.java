@@ -37,4 +37,6 @@ public class FeedInteractorTest {
 
         feedInteractor.fetchFirstFeedPage(observer);
     }
+
+
 }

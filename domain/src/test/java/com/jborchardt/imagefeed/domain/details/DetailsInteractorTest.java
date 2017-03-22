@@ -12,10 +12,6 @@ public class DetailsInteractorTest {
 
     @Test
     public void testGetDetails() {
-        final DetailsRepository repository = new MockDetailsRepository(false);
-
-        final DetailsInteractor detailsInteractor = new DetailsInteractor(Schedulers.io(), Schedulers.io(), repository);
-
         final DisposableObserver<DetailsModel> observer = new DisposableObserver<DetailsModel>() {
 
             @Override
@@ -34,14 +30,11 @@ public class DetailsInteractorTest {
             }
         };
 
-        detailsInteractor.fetchDetails("id", observer);
+        getDetailsInteractor(false).fetchDetails("id", observer);
     }
 
     @Test
     public void testGetDetailsError() {
-        final DetailsRepository repository = new MockDetailsRepository(true);
-
-        final DetailsInteractor detailsInteractor = new DetailsInteractor(Schedulers.io(), Schedulers.io(), repository);
 
         final DisposableObserver<DetailsModel> observer = new DisposableObserver<DetailsModel>() {
 
@@ -61,6 +54,13 @@ public class DetailsInteractorTest {
             }
         };
 
-        detailsInteractor.fetchDetails("id", observer);
+        getDetailsInteractor(true).fetchDetails("id", observer);
+    }
+
+    private DetailsInteractor getDetailsInteractor(boolean shouldThrowError) {
+        final DetailsRepository repository = new MockDetailsRepository(shouldThrowError);
+        final DetailsInteractor detailsInteractor = new DetailsInteractor(Schedulers.io(), Schedulers.io(), repository);
+
+        return detailsInteractor;
     }
 }
