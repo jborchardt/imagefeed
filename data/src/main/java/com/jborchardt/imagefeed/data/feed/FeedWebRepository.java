@@ -1,9 +1,7 @@
 package com.jborchardt.imagefeed.data.feed;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.jborchardt.imagefeed.data.R;
 import com.jborchardt.imagefeed.data.model.FeedItem;
 import com.jborchardt.imagefeed.data.model.ImgurResponse;
 import com.jborchardt.imagefeed.domain.feed.FeedRepository;
@@ -30,18 +28,19 @@ public class FeedWebRepository implements FeedRepository {
     private static final int DEFAULT_PAGE_SIZE = 100;
 
     private final ImgurService mImgurService;
-    private final Context mContext;
 
-    public FeedWebRepository(@NonNull final Context context) {
-        mContext = context;
+    public FeedWebRepository(final String baseUrl, final String clientId) {
+        mImgurService = createImgurService(baseUrl, clientId);
+    }
 
+    private ImgurService createImgurService(final String baseUrl, final String clientId) {
         final OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
         okHttpClientBuilder.addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Interceptor.Chain chain) throws IOException {
                 final Request original = chain.request();
 
-                final String authValue = "Client-ID " + mContext.getString(R.string.clientId);
+                final String authValue = "Client-ID " + clientId;
 
                 final Request.Builder requestBuilder = original.newBuilder()
                         .header("Authorization", authValue);
@@ -52,13 +51,13 @@ public class FeedWebRepository implements FeedRepository {
         });
         final OkHttpClient okHttpClient = okHttpClientBuilder.build();
 
-
         final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(context.getString(R.string.base_url))
+                .baseUrl(baseUrl)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        mImgurService = retrofit.create(ImgurService.class);
+
+        return retrofit.create(ImgurService.class);
     }
 
     @Override
@@ -67,7 +66,6 @@ public class FeedWebRepository implements FeedRepository {
         final retrofit2.Response<ImgurResponse> response = feedItemsCall.execute();
         return response.body().getData();
     }
-
 
     private interface ImgurService {
         @GET("gallery/hot/viral/0.json")

@@ -28,7 +28,9 @@ public class RepositoryRegistry {
 
     public FeedRepository getFeedRepository() {
         if(mFeedRepository == null) {
-            mFeedRepository = new FeedWebRepository(mContext);
+            final String baseUrl = mContext.getString(R.string.base_url);
+            final String clientId = mContext.getString(R.string.client_id);
+            mFeedRepository = new FeedWebRepository(baseUrl, clientId);
         }
         return mFeedRepository;
     }
