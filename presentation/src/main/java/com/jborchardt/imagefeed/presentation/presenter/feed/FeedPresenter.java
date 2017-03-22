@@ -37,6 +37,14 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
     @Override
     public void register() {
         showLoading();
+        fetchFirstPage();
+    }
+
+    public void retry() {
+        fetchFirstPage();
+    }
+
+    private void fetchFirstPage() {
         mInteractor.fetchFirstFeedPage(mObserver);
     }
 
@@ -53,8 +61,8 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
         mView.hideLoading();
     }
 
-    private void showError() {
-        mView.showError();
+    private void showError(final boolean showRetry) {
+        mView.showError(showRetry);
     }
 
     @Override
@@ -93,6 +101,7 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
     }
 
     private class FeedObserver extends BaseObserver<FeedItemModel> {
+
         @Override
         public void onNext(final FeedItemModel item) {
             mFeedItems.add(item);
@@ -102,6 +111,11 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
         @Override
         public void onComplete() {
             hideLoading();
+        }
+
+        @Override
+        public void onError(final Throwable e) {
+            showError(shouldRetry(e));
         }
     }
 }

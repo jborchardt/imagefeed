@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.jborchardt.imagefeed.presentation.view.toolbar.LoadingToolbar
+        <com.jborchardt.imagefeed.presentation.view.loading.LoadingToolbar
             android:id="@+id/toolbarModule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

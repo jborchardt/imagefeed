@@ -9,9 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.jborchardt.imagefeed.R;
-import com.jborchardt.imagefeed.presentation.view.toolbar.LoadingBarView;
-import com.jborchardt.imagefeed.presentation.view.toolbar.LoadingToolbar;
-import com.jborchardt.imagefeed.presentation.view.toolbar.LoadingViewProvider;
+import com.jborchardt.imagefeed.presentation.view.loading.LoadingBarView;
+import com.jborchardt.imagefeed.presentation.view.loading.LoadingToolbar;
+import com.jborchardt.imagefeed.presentation.view.loading.LoadingViewProvider;
 
 public abstract class BaseActivity extends AppCompatActivity implements LoadingViewProvider {
 
@@ -28,13 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity implements LoadingV
 
         setupToolbar();
 
-
         showContent();
-    }
-
-    private void showContent() {
-        final Fragment fragment = getContentFragment();
-        showFragment(fragment, false);
     }
 
     private void setupContentView() {
@@ -46,11 +40,16 @@ public abstract class BaseActivity extends AppCompatActivity implements LoadingV
         setSupportActionBar(mToolbar.getToolbar());
     }
 
-    /*Action bar*/
+    private void showContent() {
+        final Fragment fragment = getContentFragment();
+        showFragment(fragment, false);
+    }
 
-    public LoadingBarView getLoadingView() {
+    @Override
+    public LoadingBarView provideLoadingView() {
         return mToolbar.getLoadingView();
     }
+
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {

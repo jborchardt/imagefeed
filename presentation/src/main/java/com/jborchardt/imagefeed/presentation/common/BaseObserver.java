@@ -1,5 +1,7 @@
 package com.jborchardt.imagefeed.presentation.common;
 
+import java.net.UnknownHostException;
+
 import io.reactivex.observers.DisposableObserver;
 
 /**
@@ -20,5 +22,9 @@ public class BaseObserver<T> extends DisposableObserver<T> {
     @Override
     public void onComplete() {
 
+    }
+
+    protected boolean shouldRetry(final Throwable e) {
+        return e instanceof UnknownHostException;
     }
 }

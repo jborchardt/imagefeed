@@ -12,6 +12,7 @@ import com.jborchardt.imagefeed.presentation.R;
 import com.jborchardt.imagefeed.presentation.common.BaseFragment;
 import com.jborchardt.imagefeed.presentation.presenter.feed.FeedPresenter;
 import com.jborchardt.imagefeed.presentation.presenter.feed.FeedView;
+import com.jborchardt.imagefeed.presentation.view.error.ErrorSnackbarView;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -66,5 +67,15 @@ public class FeedFragment extends BaseFragment implements FeedView {
         mFeedPresenter.unregister();
 
         super.onStop();
+    }
+
+    private void retryClicked() {
+        mFeedPresenter.retry();
+    }
+
+    public void showError(final boolean showRetry) {
+        final ErrorSnackbarView errorView = new ErrorSnackbarView(mFeedRecyclerView);
+        errorView.setOnClickListener(view -> retryClicked());
+        errorView.showError(showRetry);
     }
 }

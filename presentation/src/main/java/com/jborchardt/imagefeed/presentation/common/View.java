@@ -7,6 +7,4 @@ public interface View {
     void onStart();
     
     void onStop();
-
-    int getId();
 }

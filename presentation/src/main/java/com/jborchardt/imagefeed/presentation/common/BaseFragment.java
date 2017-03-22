@@ -2,16 +2,12 @@ package com.jborchardt.imagefeed.presentation.common;
 
 import android.support.v4.app.Fragment;
 
-import com.jborchardt.imagefeed.presentation.view.toolbar.LoadingViewProvider;
+import com.jborchardt.imagefeed.presentation.view.loading.LoadingViewProvider;
 
-/**
- * Created by johannesborchardt on 22.03.17.
- */
-
-public class BaseFragment extends Fragment implements LoadingView, ErrorView {
+public class BaseFragment extends Fragment implements LoadingView {
 
     private LoadingView getLoadingView() {
-        return ((LoadingViewProvider) getActivity()).getLoadingView();
+        return ((LoadingViewProvider) getActivity()).provideLoadingView();
     }
 
     @Override
@@ -24,8 +20,4 @@ public class BaseFragment extends Fragment implements LoadingView, ErrorView {
         getLoadingView().hideLoading();
     }
 
-    @Override
-    public void showError() {
-        //TODO
-    }
 }

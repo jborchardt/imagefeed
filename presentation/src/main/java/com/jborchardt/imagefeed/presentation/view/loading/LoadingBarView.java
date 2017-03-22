@@ -1,4 +1,4 @@
-package com.jborchardt.imagefeed.presentation.view.toolbar;
+package com.jborchardt.imagefeed.presentation.view.loading;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
