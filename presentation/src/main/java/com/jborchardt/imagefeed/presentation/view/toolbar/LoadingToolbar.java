@@ -18,7 +18,7 @@ public class LoadingToolbar extends FrameLayout {
     private Toolbar mToolbar;
 
     private int mHighlightColor;
-    private LoadingView mLoadingModule;
+    private LoadingBarView mLoadingModule;
 
     public LoadingToolbar(Context context) {
         super(context);
@@ -44,7 +44,7 @@ public class LoadingToolbar extends FrameLayout {
         LayoutInflater.from(getContext()).inflate(R.layout.loading_toolbar, this, true);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mLoadingModule = (LoadingView) findViewById(R.id.loading);
+        mLoadingModule = (LoadingBarView) findViewById(R.id.loading);
 
         setHighlightColor(mHighlightColor);
     }
@@ -71,7 +71,7 @@ public class LoadingToolbar extends FrameLayout {
         return mToolbar;
     }
 
-    public LoadingView getLoadingModule() {
+    public LoadingBarView getLoadingView() {
         return mLoadingModule;
     }
 }

@@ -10,18 +10,19 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import com.jborchardt.imagefeed.presentation.R;
+import com.jborchardt.imagefeed.presentation.common.LoadingView;
 
 
-public class LoadingView extends FrameLayout {
+public class LoadingBarView extends FrameLayout implements LoadingView {
 
     private View             mSolidBar;
     private ProgressBar      mProgressBar;
 
-    public LoadingView(Context context) {
+    public LoadingBarView(Context context) {
         this(context, null);
     }
 
-    public LoadingView(Context context, AttributeSet attrs) {
+    public LoadingBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -38,11 +39,13 @@ public class LoadingView extends FrameLayout {
             mProgressBar.setIndeterminateTintList(ColorStateList.valueOf(color));
     }
 
+    @Override
     public void showLoading() {
         mProgressBar.setVisibility(View.VISIBLE);
         mSolidBar.setVisibility(View.GONE);
     }
 
+    @Override
     public void hideLoading() {
         mSolidBar.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);

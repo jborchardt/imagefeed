@@ -8,11 +8,5 @@ public interface View {
     
     void onStop();
 
-    void showLoading();
-
-    void hideLoading();
-
-    void showError();
-
     int getId();
 }

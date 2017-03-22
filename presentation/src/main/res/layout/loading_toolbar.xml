@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <com.jborchardt.imagefeed.presentation.view.toolbar.LoadingView
+    <com.jborchardt.imagefeed.presentation.view.toolbar.LoadingBarView
         android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
