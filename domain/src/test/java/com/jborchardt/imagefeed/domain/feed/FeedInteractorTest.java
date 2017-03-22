@@ -1,4 +1,4 @@
-package com.jborchardt.domain.feed;
+package com.jborchardt.imagefeed.domain.feed;
 
 import org.junit.Test;
 
@@ -15,11 +15,11 @@ public class FeedInteractorTest {
 
         final FeedInteractor feedInteractor = new FeedInteractor(Schedulers.io(), Schedulers.io(), repository);
 
-        final DisposableObserver<FeedItem> observer = new DisposableObserver<FeedItem>() {
+        final DisposableObserver<FeedItemModel> observer = new DisposableObserver<FeedItemModel>() {
             private int mItemCount;
 
             @Override
-            public void onNext(final FeedItem value) {
+            public void onNext(final FeedItemModel value) {
                 mItemCount++;
             }
 
@@ -34,6 +34,6 @@ public class FeedInteractorTest {
             }
         };
 
-        feedInteractor.fetchFeed(observer);
+        feedInteractor.fetchFirstFeedPage(observer);
     }
 }
