@@ -8,11 +8,11 @@ import java.util.List;
  * Created by johannesborchardt on 22.03.17.
  */
 
-public class ImgurResponse {
+public class ImgurFeedResponse {
     @SerializedName("data")
-    List<FeedItem> mData;
+    List<ImgurImage> mData;
 
-    public List<FeedItem> getData() {
+    public List<ImgurImage> getData() {
         return mData;
     }
 }

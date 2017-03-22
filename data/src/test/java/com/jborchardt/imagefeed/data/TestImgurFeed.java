@@ -1,7 +1,7 @@
 package com.jborchardt.imagefeed.data;
 
 import com.jborchardt.imagefeed.data.feed.FeedWebRepository;
-import com.jborchardt.imagefeed.data.model.FeedItem;
+import com.jborchardt.imagefeed.data.model.ImgurImage;
 
 import junit.framework.Assert;
 
@@ -22,9 +22,9 @@ public class TestImgurFeed {
 
     @Test
     public void testFetchFeed() throws IOException {
-        final List<FeedItem> feedItems = mRepository.fetchFeed(0);
+        final List<ImgurImage> imgurImages = mRepository.fetchFeed(0);
 
-        Assert.assertNotNull(feedItems);
-        Assert.assertTrue(feedItems.size() > 0);
+        Assert.assertNotNull(imgurImages);
+        Assert.assertTrue(imgurImages.size() > 0);
     }
 }
