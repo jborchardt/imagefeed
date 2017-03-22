@@ -12,6 +12,8 @@
         android:id="@+id/progress_bar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
+        android:layout_marginBottom="-6dp"
+        android:layout_gravity="center"
         android:layout_height="22dp"
         android:indeterminate="true"
         android:indeterminateTint="@color/colorAccent"

@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.jborchardt.imagefeed.R;
@@ -15,9 +14,6 @@ import com.jborchardt.imagefeed.presentation.navigation.Navigator;
 import com.jborchardt.imagefeed.presentation.view.loading.LoadingBarView;
 import com.jborchardt.imagefeed.presentation.view.loading.LoadingToolbar;
 import com.jborchardt.imagefeed.presentation.view.loading.LoadingViewProvider;
-
-import io.reactivex.functions.Consumer;
-import io.reactivex.plugins.RxJavaPlugins;
 
 public abstract class BaseActivity extends AppCompatActivity implements LoadingViewProvider, Navigator {
 
@@ -62,16 +58,6 @@ public abstract class BaseActivity extends AppCompatActivity implements LoadingV
         intent.putExtra(DetailsActivity.ARG_ID, itemId);
 
         startActivity(intent);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed(); //TODO
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
      /*Fragment transactions*/

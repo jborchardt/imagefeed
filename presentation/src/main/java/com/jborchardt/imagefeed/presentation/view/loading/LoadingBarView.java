@@ -15,8 +15,8 @@ import com.jborchardt.imagefeed.presentation.common.LoadingView;
 
 public class LoadingBarView extends FrameLayout implements LoadingView {
 
-    private View             mSolidBar;
-    private ProgressBar      mProgressBar;
+    private View mSolidBar;
+    private ProgressBar mProgressBar;
 
     public LoadingBarView(Context context) {
         this(context, null);
@@ -33,10 +33,11 @@ public class LoadingBarView extends FrameLayout implements LoadingView {
 
         mSolidBar = findViewById(R.id.solid_bar);
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        mProgressBar.setIndeterminate(true);
     }
 
     public void setTintColor(@ColorInt int color) {
-            mProgressBar.setIndeterminateTintList(ColorStateList.valueOf(color));
+        mProgressBar.setIndeterminateTintList(ColorStateList.valueOf(color));
     }
 
     @Override
