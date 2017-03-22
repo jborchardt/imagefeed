@@ -57,7 +57,7 @@ public class DetailsInteractorTest {
         getDetailsInteractor(true).fetchDetails("id", observer);
     }
 
-    private DetailsInteractor getDetailsInteractor(boolean shouldThrowError) {
+    private DetailsInteractor getDetailsInteractor(final boolean shouldThrowError) {
         final DetailsRepository repository = new MockDetailsRepository(shouldThrowError);
         final DetailsInteractor detailsInteractor = new DetailsInteractor(Schedulers.io(), Schedulers.io(), repository);
 
