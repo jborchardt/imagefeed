@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.jborchardt.imagefeed.domain.details.DetailsInteractor;
 import com.jborchardt.imagefeed.domain.details.DetailsModel;
-import com.jborchardt.imagefeed.presentation.common.Presenter;
+import com.jborchardt.imagefeed.presentation.presenter.common.Presenter;
 import com.jborchardt.imagefeed.presentation.view.common.BaseObserver;
 
 public class DetailsPresenter implements Presenter {
@@ -28,6 +28,10 @@ public class DetailsPresenter implements Presenter {
 
     @Override
     public void unregister() {
+    }
+
+    @Override
+    public void destroy() {
         mInteractor.dispose();
     }
 

@@ -70,6 +70,13 @@ public class FeedFragment extends BaseFragment implements FeedView {
     }
 
     @Override
+    public void onDestroy() {
+        mFeedPresenter.destroy();
+        
+        super.onDestroy();
+    }
+
+    @Override
     protected void onRetry() {
         mFeedPresenter.retry();
     }

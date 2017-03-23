@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide;
 import com.jborchardt.imagefeed.domain.feed.FeedInteractor;
 import com.jborchardt.imagefeed.domain.feed.FeedItemModel;
 import com.jborchardt.imagefeed.presentation.R;
-import com.jborchardt.imagefeed.presentation.common.Presenter;
+import com.jborchardt.imagefeed.presentation.presenter.common.Presenter;
 import com.jborchardt.imagefeed.presentation.navigation.Navigator;
 import com.jborchardt.imagefeed.presentation.view.common.BaseObserver;
 
@@ -40,6 +40,16 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
         fetchNextPage();
     }
 
+
+    @Override
+    public void unregister() {
+    }
+
+    @Override
+    public void destroy() {
+        mInteractor.dispose();
+    }
+
     public void retry() {
         fetchNextPage();
     }
@@ -49,10 +59,6 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
         mInteractor.fetchNextPage(new FeedObserver());
     }
 
-    @Override
-    public void unregister() {
-        mInteractor.dispose();
-    }
 
     private void showLoading() {
         mView.showLoading();

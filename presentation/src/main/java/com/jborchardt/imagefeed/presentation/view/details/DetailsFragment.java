@@ -148,6 +148,13 @@ public class DetailsFragment extends BaseFragment implements DetailsView {
         delayedHide(100);
     }
 
+    @Override
+    public void onDestroy() {
+        mDetailsPresenter.destroy();
+
+        super.onDestroy();
+    }
+
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
