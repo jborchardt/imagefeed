@@ -30,9 +30,13 @@ At two points, the above mentioned architecture is broken: Whenever the Glide li
 The app consists of an imagefeed, and an image details view. Both screens are able to handle portrait and landscape orientation without the need to recreate views.
 
 ## Image feed
+![alt tag](https://github.com/jborchardt/imagefeed/blob/master/screenshots/screenshot_feed.png)
+
 The image feed shows all the image posts of Imgur's most viral feed. When the user scrolls close to the end of the feed, the next page of images is requested (paging). Loading is indicated by a horizontal progressbar in the actionbar.
 
 ## Image Details
+![alt tag](https://github.com/jborchardt/imagefeed/blob/master/screenshots/screenshot_details.png)
+
 The image details show the selected image in fullscreen and provides upvotes, downvotes, comments and views, as well as the image's titles as metadata.
 
 # Open points
