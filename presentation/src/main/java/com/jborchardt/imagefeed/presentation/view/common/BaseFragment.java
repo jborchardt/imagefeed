@@ -1,9 +1,7 @@
-package com.jborchardt.imagefeed.presentation.presenter.common;
+package com.jborchardt.imagefeed.presentation.view.common;
 
 import android.support.v4.app.Fragment;
 
-import com.jborchardt.imagefeed.presentation.common.ErrorView;
-import com.jborchardt.imagefeed.presentation.common.LoadingView;
 import com.jborchardt.imagefeed.presentation.navigation.Navigator;
 import com.jborchardt.imagefeed.presentation.view.error.ErrorSnackbarView;
 import com.jborchardt.imagefeed.presentation.view.loading.LoadingViewProvider;

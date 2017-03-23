@@ -1,4 +1,4 @@
-package com.jborchardt.imagefeed.presentation.common;
+package com.jborchardt.imagefeed.presentation.view.common;
 
 public interface LoadingView {
     void showLoading();

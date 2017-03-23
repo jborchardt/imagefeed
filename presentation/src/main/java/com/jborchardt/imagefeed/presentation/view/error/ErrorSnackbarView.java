@@ -5,7 +5,7 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import com.jborchardt.imagefeed.presentation.R;
-import com.jborchardt.imagefeed.presentation.common.ErrorView;
+import com.jborchardt.imagefeed.presentation.view.common.ErrorView;
 
 
 @SuppressWarnings({"unchecked", "rawtypes"})

@@ -1,10 +1,8 @@
 package com.jborchardt.imagefeed.presentation.view.loading;
 
-/**
- * Created by johannesborchardt on 22.03.17.
- */
+import com.jborchardt.imagefeed.presentation.view.common.LoadingView;
 
 public interface LoadingViewProvider {
 
-    LoadingBarView provideLoadingView();
+    LoadingView provideLoadingView();
 }

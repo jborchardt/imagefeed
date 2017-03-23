@@ -1,4 +1,4 @@
-package com.jborchardt.imagefeed.presentation.common;
+package com.jborchardt.imagefeed.presentation.view.common;
 
 /**
  * A representation of a UI module, typically a view.

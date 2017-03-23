@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import com.jborchardt.imagefeed.presentation.R;
-import com.jborchardt.imagefeed.presentation.common.LoadingView;
+import com.jborchardt.imagefeed.presentation.view.common.LoadingView;
 
 
 public class LoadingBarView extends FrameLayout implements LoadingView {

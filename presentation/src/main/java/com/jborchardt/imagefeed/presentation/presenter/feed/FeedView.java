@@ -1,8 +1,8 @@
 package com.jborchardt.imagefeed.presentation.presenter.feed;
 
-import com.jborchardt.imagefeed.presentation.common.ErrorView;
-import com.jborchardt.imagefeed.presentation.common.LoadingView;
-import com.jborchardt.imagefeed.presentation.common.View;
+import com.jborchardt.imagefeed.presentation.view.common.ErrorView;
+import com.jborchardt.imagefeed.presentation.view.common.LoadingView;
+import com.jborchardt.imagefeed.presentation.view.common.View;
 
 /**
  * Created by johannesborchardt on 22.03.17.

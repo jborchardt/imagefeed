@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.jborchardt.imagefeed.presentation.common.LoadingView;
+import com.jborchardt.imagefeed.presentation.view.common.LoadingView;
 
 public class LoadingCircleView extends ProgressBar implements LoadingView {
     public LoadingCircleView(final Context context) {
