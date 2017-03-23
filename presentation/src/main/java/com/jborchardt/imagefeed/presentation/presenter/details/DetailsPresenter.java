@@ -40,7 +40,8 @@ public class DetailsPresenter implements Presenter {
     }
 
     private void fetchDetails() {
-        mInteractor.fetchDetails(new DetailsObserver(), mImageId);
+        final DetailsObserver observer = new DetailsObserver();
+        mInteractor.fetchDetails(observer, observer, mImageId);
     }
 
     private void showDetails(final DetailsModel details) {

@@ -56,7 +56,8 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
 
     public void fetchNextPage() {
         showLoading();
-        mInteractor.fetchNextPage(new FeedObserver());
+        final FeedObserver feedObserver = new FeedObserver();
+        mInteractor.fetchNextPage(feedObserver, feedObserver);
     }
 
 
