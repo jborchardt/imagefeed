@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Presentation</string>
+    <string name="error_default">There was a problem</string>
+    <string name="retry">Retry</string>
+    <string name="error_retry">Problem with the data connection</string>
+</resources>
