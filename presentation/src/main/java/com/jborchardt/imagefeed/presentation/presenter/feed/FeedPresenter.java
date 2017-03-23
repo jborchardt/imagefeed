@@ -10,9 +10,9 @@ import com.bumptech.glide.Glide;
 import com.jborchardt.imagefeed.domain.feed.FeedInteractor;
 import com.jborchardt.imagefeed.domain.feed.FeedItemModel;
 import com.jborchardt.imagefeed.presentation.R;
-import com.jborchardt.imagefeed.presentation.view.common.BaseObserver;
 import com.jborchardt.imagefeed.presentation.common.Presenter;
 import com.jborchardt.imagefeed.presentation.navigation.Navigator;
+import com.jborchardt.imagefeed.presentation.view.common.BaseObserver;
 
 import java.util.ArrayList;
 import java.util.List;

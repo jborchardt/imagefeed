@@ -9,9 +9,9 @@ import com.jborchardt.imagefeed.data.RepositoryRegistry;
 import com.jborchardt.imagefeed.domain.feed.FeedInteractor;
 import com.jborchardt.imagefeed.domain.feed.FeedRepository;
 import com.jborchardt.imagefeed.presentation.R;
-import com.jborchardt.imagefeed.presentation.view.common.BaseFragment;
 import com.jborchardt.imagefeed.presentation.presenter.feed.FeedPresenter;
 import com.jborchardt.imagefeed.presentation.presenter.feed.FeedView;
+import com.jborchardt.imagefeed.presentation.view.common.BaseFragment;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

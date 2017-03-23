@@ -16,10 +16,10 @@ import com.jborchardt.imagefeed.domain.details.DetailsInteractor;
 import com.jborchardt.imagefeed.domain.details.DetailsModel;
 import com.jborchardt.imagefeed.domain.details.DetailsRepository;
 import com.jborchardt.imagefeed.presentation.R;
-import com.jborchardt.imagefeed.presentation.view.common.LoadingView;
-import com.jborchardt.imagefeed.presentation.view.common.BaseFragment;
 import com.jborchardt.imagefeed.presentation.presenter.details.DetailsPresenter;
 import com.jborchardt.imagefeed.presentation.presenter.details.DetailsView;
+import com.jborchardt.imagefeed.presentation.view.common.BaseFragment;
+import com.jborchardt.imagefeed.presentation.view.common.LoadingView;
 import com.jborchardt.imagefeed.presentation.view.loading.LoadingCircleView;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
