@@ -1,6 +1,8 @@
 # imagefeed
 An Android image fetcher for Imgur. Made in less than 48 hours.
 
+[Download the latest APK here](https://github.com/jborchardt/imagefeed/raw/master/imagefeed.apk)
+
 # Architecture
 The architectural approach used in for this application is close to Uncle Bob's clean architecture, as described here: https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html
 
@@ -35,7 +37,7 @@ The image details show the selected image in fullscreen and provides upvotes, do
 
 # Open points
 Given the short timeframe in which this app was created, room for improvement exists. The following comes to mind:
+- Dependency injection: Could be handled by a framework, like dagger. Right now Each View constructs its own dependency, which in the eyes of the author it shouldn't. This is considered the biggest weakness of the application.
 - Transitions: The translation from image feed to details invites for a shared item transition.
 - Design in general: The author of this application consideres himself to be a programmer rather than a designer.
 - Tests: Right now tests for interactors and repositories exist. UI tests don't.
-- Dependency injection: Could be handled by a framework, like dagger.
