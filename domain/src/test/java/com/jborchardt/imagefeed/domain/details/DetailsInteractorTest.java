@@ -1,66 +1,42 @@
 package com.jborchardt.imagefeed.domain.details;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
+import java.io.IOException;
 
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.fail;
+import io.reactivex.observers.TestObserver;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+
+@RunWith(MockitoJUnitRunner.class)
 public class DetailsInteractorTest {
 
-    @Test
-    public void testGetDetails() {
-        final DisposableObserver<DetailsModel> observer = new DisposableObserver<DetailsModel>() {
+    @Mock
+    private DetailsRepository mDetailsRepository;
+    private DetailsInteractor mDetailsInteractor;
+    private TestObserver<DetailsModel> mTestObserver;
 
-            @Override
-            public void onNext(final DetailsModel details) {
-                assertNotNull(details);
-            }
-
-            @Override
-            public void onError(final Throwable e) {
-                fail();
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        };
-
-        getDetailsInteractor(false).fetchDetails(observer, "id");
+    @Before
+    public void setUp() {
+        mDetailsInteractor = new DetailsInteractor(null, null, mDetailsRepository);
+        mTestObserver = new TestObserver<>();
     }
 
     @Test
-    public void testGetDetailsError() {
+    public void testFetchDetails() throws IOException {
+        final String id = "testid";
+        when(mDetailsRepository.fetchDetails(id)).thenReturn(new MockDetailsModel());
 
-        final DisposableObserver<DetailsModel> observer = new DisposableObserver<DetailsModel>() {
+        mDetailsInteractor.fetchDetails(mTestObserver, null, id);
 
-            @Override
-            public void onNext(final DetailsModel details) {
-                fail();
-            }
-
-            @Override
-            public void onError(final Throwable e) {
-                assertNotNull(e);
-            }
-
-            @Override
-            public void onComplete() {
-                fail();
-            }
-        };
-
-        getDetailsInteractor(true).fetchDetails(observer, "id");
-    }
-
-    private DetailsInteractor getDetailsInteractor(final boolean shouldThrowError) {
-        final DetailsRepository repository = new MockDetailsRepository(shouldThrowError);
-        final DetailsInteractor detailsInteractor = new DetailsInteractor(Schedulers.io(), Schedulers.io(), repository);
-
-        return detailsInteractor;
+        mTestObserver.assertNoErrors();
+        verify(mDetailsRepository).fetchDetails(id);
+        verifyNoMoreInteractions(mDetailsRepository);
     }
 }

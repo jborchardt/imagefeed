@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.Scheduler;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.observers.DisposableObserver;
+import io.reactivex.annotations.Nullable;
+import io.reactivex.disposables.Disposable;
 
 public class FeedInteractor extends Interactor<FeedItemModel> {
 
@@ -27,21 +29,21 @@ public class FeedInteractor extends Interactor<FeedItemModel> {
         mFeedItems = new ArrayList<>();
     }
 
-    public void fetchNextPage(@NonNull final DisposableObserver<FeedItemModel> observer) {
-        fetchFeed(observer, mPage);
+    public void fetchNextPage(@NonNull final Observer<FeedItemModel> observer, @Nullable final Disposable disposable) {
+        fetchFeed(observer, disposable, mPage);
         mPage++;
     }
 
-    private void fetchFeed(@NonNull final DisposableObserver<FeedItemModel> observer, final int page) {
-        if(mFeedRepository.isFetching()) {
+    private void fetchFeed(@NonNull final Observer<FeedItemModel> observer, @Nullable final Disposable disposable, final int page) {
+        if (mFeedRepository.isFetching()) {
             return;
         }
 
         final Observable<FeedItemModel> feedObservable = Observable.create(emitter -> {
             try {
                 final List<? extends FeedItemModel> feedItems = mFeedRepository.fetchFeed(page);
-                for(FeedItemModel feedItem : feedItems) {
-                    if(isAcceptedType(feedItem)) {
+                for (FeedItemModel feedItem : feedItems) {
+                    if (isAcceptedType(feedItem)) {
                         emitter.onNext(feedItem);
                     }
                 }
@@ -54,7 +56,7 @@ public class FeedInteractor extends Interactor<FeedItemModel> {
             }
         });
 
-        execute(observer, feedObservable);
+        execute(observer, disposable, feedObservable);
     }
 
     private boolean isAcceptedType(final FeedItemModel feedItem) {

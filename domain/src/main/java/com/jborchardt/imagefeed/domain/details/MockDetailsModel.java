@@ -1,37 +1,33 @@
 package com.jborchardt.imagefeed.domain.details;
 
-/**
- * Created by johannesborchardt on 22.03.17.
- */
-
 class MockDetailsModel implements DetailsModel {
     @Override
     public String getImageUrl() {
-        return "image/url.jpeg";
+        return null;
     }
 
     @Override
     public String getTitle() {
-        return "title";
+        return null;
     }
 
     @Override
     public int getUpvotes() {
-        return 10;
+        return 0;
     }
 
     @Override
     public int getDownvotes() {
-        return 1;
+        return 0;
     }
 
     @Override
     public int getComments() {
-        return 5;
+        return 0;
     }
 
     @Override
     public int getViews() {
-        return 120;
+        return 0;
     }
 }

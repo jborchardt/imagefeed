@@ -1,72 +1,39 @@
 package com.jborchardt.imagefeed.domain.feed;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import io.reactivex.annotations.NonNull;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
+import java.io.IOException;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.fail;
+import io.reactivex.observers.TestObserver;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+
+@RunWith(MockitoJUnitRunner.class)
 public class FeedInteractorTest {
 
-    @Test
-    public void testGetFeedItems() {
-        final DisposableObserver<FeedItemModel> observer = new DisposableObserver<FeedItemModel>() {
-            private int mItemCount;
+    @Mock
+    private FeedRepository mFeedRepository;
+    private FeedInteractor mFeedInteractor;
+    TestObserver<FeedItemModel> mTestObserver;
 
-            @Override
-            public void onNext(final FeedItemModel value) {
-                assertNotNull(value);
-                mItemCount++;
-            }
-
-            @Override
-            public void onError(final Throwable e) {
-                fail();
-            }
-
-            @Override
-            public void onComplete() {
-                assertEquals(MockFeedRepository.FEED_ITEMS, mItemCount);
-            }
-        };
-
-        getFeedInteractor(false).fetchNextPage(observer);
+    @Before
+    public void setUp() {
+        mFeedInteractor = new FeedInteractor(null, null, mFeedRepository);
+        mTestObserver = new TestObserver<>();
     }
 
     @Test
-    public void testGetFeedItemsError() {
-        final DisposableObserver<FeedItemModel> observer = new DisposableObserver<FeedItemModel>() {
+    public void testFetchFeed() throws IOException {
+        mFeedInteractor.fetchNextPage(mTestObserver, null);
 
-            @Override
-            public void onNext(final FeedItemModel value) {
-                fail();
-            }
-
-            @Override
-            public void onError(final Throwable e) {
-                assertNotNull(e);
-            }
-
-            @Override
-            public void onComplete() {
-                fail();
-            }
-        };
-
-        getFeedInteractor(true).fetchNextPage(observer);
+        mTestObserver.assertNoErrors();
+        verify(mFeedRepository).fetchFeed(0);
+        verify(mFeedRepository).isFetching();
+        verifyNoMoreInteractions(mFeedRepository);
     }
-
-    @NonNull
-    private FeedInteractor getFeedInteractor(final boolean shouldFail) {
-        final FeedRepository repository = new MockFeedRepository(shouldFail);
-        final FeedInteractor feedInteractor = new FeedInteractor(Schedulers.io(), Schedulers.io(), repository);
-
-        return feedInteractor;
-    }
-
-
 }
