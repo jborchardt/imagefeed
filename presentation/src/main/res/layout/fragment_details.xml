@@ -6,7 +6,7 @@
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000">
+    >
 
     <ImageView
         android:id="@+id/image"
@@ -20,9 +20,9 @@
     <com.jborchardt.imagefeed.presentation.view.loading.LoadingCircleView
         android:id="@+id/loading"
         style="@style/Widget.AppCompat.ProgressBar"
-        android:layout_gravity="center"
         android:layout_width="@dimen/loading_bar_square_size"
         android:layout_height="@dimen/loading_bar_square_size"
+        android:layout_gravity="center"
         />
 
     <android.support.constraint.ConstraintLayout
