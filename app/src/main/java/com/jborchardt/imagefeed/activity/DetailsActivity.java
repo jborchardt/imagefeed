@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 
 import com.jborchardt.imagefeed.R;
 import com.jborchardt.imagefeed.presentation.view.details.DetailsFragment;
 
-public class DetailsActivity extends BaseActivity {
+public class DetailsActivity extends AppCompatActivity {
 
     public static final String ARG_ID = "id";
 
@@ -17,16 +18,16 @@ public class DetailsActivity extends BaseActivity {
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(R.string.details);
+        setContentView(R.layout.activity_details);
+
+        showDetailsFragment();
     }
 
-    @Override
-    protected Fragment getContentFragment() {
-        final String itemId = getItemId();
-
-        return DetailsFragment.newInstance(itemId);
+    private void showDetailsFragment() {
+        final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        final Fragment fragment = DetailsFragment.newInstance(getItemId());
+        transaction.replace(R.id.content, fragment);
+        transaction.commit();
     }
 
     private String getItemId() {

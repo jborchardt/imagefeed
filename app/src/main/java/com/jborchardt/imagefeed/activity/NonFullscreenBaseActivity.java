@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import com.jborchardt.imagefeed.R;
 import com.jborchardt.imagefeed.presentation.navigation.Navigator;
@@ -15,26 +14,22 @@ import com.jborchardt.imagefeed.presentation.view.loading.LoadingBarView;
 import com.jborchardt.imagefeed.presentation.view.loading.LoadingToolbar;
 import com.jborchardt.imagefeed.presentation.view.loading.LoadingViewProvider;
 
-public abstract class BaseActivity extends AppCompatActivity implements LoadingViewProvider, Navigator {
+/**
+ * Base activity that provides a Toolbar layout with a loading indicator and helper for fragment transactions
+ */
+public abstract class NonFullscreenBaseActivity extends AppCompatActivity implements LoadingViewProvider, Navigator {
 
-    private View mContentView;
     private LoadingToolbar mToolbar;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_base);
-
-        setupContentView();
+        setContentView(R.layout.activity_nonfullscreen_base);
 
         setupToolbar();
 
         showContent();
-    }
-
-    private void setupContentView() {
-        mContentView = findViewById(R.id.content);
     }
 
     private void setupToolbar() {
@@ -62,8 +57,8 @@ public abstract class BaseActivity extends AppCompatActivity implements LoadingV
 
      /*Fragment transactions*/
 
-    protected void showFragment(Fragment fragment, boolean addToBackStack) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+    protected void showFragment(@NonNull final Fragment fragment, boolean addToBackStack) {
+        final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content, fragment);
         if (addToBackStack) {
             transaction.addToBackStack(null);
