@@ -11,6 +11,7 @@
 
     <style name="FullScreenTheme" parent="AppTheme">
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/windowBackgroundDark</item>
     </style>
 
 </resources>

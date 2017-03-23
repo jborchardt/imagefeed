@@ -5,5 +5,7 @@
     <color name="colorTextPrimary">#FFFFFFFF</color>
     <color name="colorTextTertiary">#FFFFFFFF</color>
 
-    <color name="windowBackground">#E6E6E6</color>
+    <color name="windowBackground">#FFFFFFFF</color>
+    <color name="windowBackgroundDark">#000000</color>
+
 </resources>
