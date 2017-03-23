@@ -15,7 +15,6 @@
         android:layout_marginBottom="-6dp"
         android:layout_gravity="center"
         android:layout_height="22dp"
-        android:indeterminate="true"
         android:indeterminateTint="@color/colorAccent"
         android:indeterminateTintMode="src_in"
         android:visibility="visible"/>

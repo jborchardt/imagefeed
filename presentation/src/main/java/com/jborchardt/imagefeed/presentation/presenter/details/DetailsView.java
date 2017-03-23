@@ -8,4 +8,8 @@ import com.jborchardt.imagefeed.presentation.common.View;
 public interface DetailsView extends View, LoadingView, ErrorView{
 
     void renderDetails(DetailsModel details);
+
+    void hideMetadata();
+
+    void showMetadata();
 }

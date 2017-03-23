@@ -15,16 +15,30 @@
         android:adjustViewBounds="false"
         android:cropToPadding="true"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_image_placeholder_white_24dp"/>
+        />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/meta_info"
+        android:id="@+id/meta_data"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="81dp">
+
+        <com.jborchardt.imagefeed.presentation.view.loading.LoadingCircleView
+            android:id="@+id/loading"
+            android:layout_width="@dimen/loading_bar_square_size"
+            android:layout_height="@dimen/loading_bar_square_size"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            style="@style/Widget.AppCompat.ProgressBar"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"/>
 
         <ImageView
             android:id="@+id/img_upvotes"
@@ -78,7 +92,6 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:text="TextView"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -92,7 +105,6 @@
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="0dp"
-            android:text="TextView"
             android:textAppearance="@android:style/TextAppearance.Material.Small"
             app:layout_constraintLeft_toRightOf="@+id/img_upvotes"
             app:layout_constraintTop_toTopOf="@+id/img_upvotes"/>
@@ -104,7 +116,6 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="0dp"
-            android:text="TextView"
             app:layout_constraintRight_toLeftOf="@+id/img_downvotes"
             app:layout_constraintTop_toTopOf="@+id/img_downvotes"/>
 
@@ -115,7 +126,6 @@
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="0dp"
-            android:text="TextView"
             app:layout_constraintLeft_toRightOf="@+id/img_comments"
             app:layout_constraintTop_toTopOf="@+id/img_comments"/>
 
@@ -126,7 +136,6 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="0dp"
-            android:text="TextView"
             app:layout_constraintRight_toLeftOf="@+id/img_views"
             app:layout_constraintTop_toTopOf="@+id/img_views"/>
 

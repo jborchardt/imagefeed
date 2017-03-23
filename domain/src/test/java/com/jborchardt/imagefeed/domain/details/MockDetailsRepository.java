@@ -1,10 +1,6 @@
 package com.jborchardt.imagefeed.domain.details;
 
-import android.support.annotation.NonNull;
-
-/**
- * Created by johannesborchardt on 22.03.17.
- */
+import io.reactivex.annotations.NonNull;
 
 public class MockDetailsRepository implements DetailsRepository {
 

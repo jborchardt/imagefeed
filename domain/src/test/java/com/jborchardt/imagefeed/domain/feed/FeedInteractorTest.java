@@ -1,13 +1,14 @@
 package com.jborchardt.imagefeed.domain.feed;
 
-import android.support.annotation.NonNull;
-
 import org.junit.Test;
 
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
-import static junit.framework.Assert.*;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.fail;
 
 public class FeedInteractorTest {
 
@@ -33,7 +34,7 @@ public class FeedInteractorTest {
             }
         };
 
-        getFeedInteractor(false).fetchFirstFeedPage(observer);
+        getFeedInteractor(false).fetchNextPage(observer);
     }
 
     @Test
@@ -56,7 +57,7 @@ public class FeedInteractorTest {
             }
         };
 
-        getFeedInteractor(true).fetchFirstFeedPage(observer);
+        getFeedInteractor(true).fetchNextPage(observer);
     }
 
     @NonNull

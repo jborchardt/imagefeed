@@ -26,4 +26,9 @@ public class MockFeedRepository implements FeedRepository {
         }
         return feedItems;
     }
+
+    @Override
+    public boolean isFetching() {
+        return false;
+    }
 }

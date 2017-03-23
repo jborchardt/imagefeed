@@ -5,7 +5,12 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/colorTextPrimary</item>
-        <item name="android:textColorTertiary">@color/colorTextPrimary</item>
+        <item name="android:textColorTertiary">@color/colorTextTertiary</item>
         <item name="android:windowBackground">@color/windowBackground</item>
     </style>
+
+    <style name="FullScreenTheme" parent="AppTheme">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
 </resources>

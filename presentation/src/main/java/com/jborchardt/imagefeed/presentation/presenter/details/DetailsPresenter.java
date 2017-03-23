@@ -12,6 +12,7 @@ public class DetailsPresenter implements Presenter {
     private final DetailsInteractor mInteractor;
     private final DetailsView mView;
     private final String mImageId;
+    private boolean mMetadataVisible;
 
     public DetailsPresenter(@NonNull final DetailsInteractor interactor, @NonNull DetailsView view, @NonNull String imageId) {
         mInteractor = interactor;
@@ -52,6 +53,16 @@ public class DetailsPresenter implements Presenter {
 
     private void showError(final boolean showRetry) {
         mView.showError(showRetry);
+    }
+
+    public void toggleMetadata() {
+        if (mMetadataVisible) {
+            mView.hideMetadata();
+            mMetadataVisible = false;
+        } else {
+            mView.showMetadata();
+            mMetadataVisible = true;
+        }
     }
 
     private class DetailsObserver extends BaseObserver<DetailsModel> {
