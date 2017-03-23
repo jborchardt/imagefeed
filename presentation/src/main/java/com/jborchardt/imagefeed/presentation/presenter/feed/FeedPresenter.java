@@ -99,7 +99,7 @@ public class FeedPresenter extends RecyclerView.Adapter<FeedPresenter.FeedViewHo
             Glide
                     .with(mImageView.getContext())
                     .load(item.getImageUrl())
-                    .placeholder(R.drawable.ic_image_placeholder_24dp)
+                    .placeholder(R.drawable.ic_image_placeholder_black_24dp)
                     .into(mImageView);
 
             mImageView.setOnClickListener(view -> {

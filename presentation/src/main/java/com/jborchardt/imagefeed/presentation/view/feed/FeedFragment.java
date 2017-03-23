@@ -9,7 +9,7 @@ import com.jborchardt.imagefeed.data.RepositoryRegistry;
 import com.jborchardt.imagefeed.domain.feed.FeedInteractor;
 import com.jborchardt.imagefeed.domain.feed.FeedRepository;
 import com.jborchardt.imagefeed.presentation.R;
-import com.jborchardt.imagefeed.presentation.common.BaseFragment;
+import com.jborchardt.imagefeed.presentation.presenter.common.BaseFragment;
 import com.jborchardt.imagefeed.presentation.presenter.feed.FeedPresenter;
 import com.jborchardt.imagefeed.presentation.presenter.feed.FeedView;
 
